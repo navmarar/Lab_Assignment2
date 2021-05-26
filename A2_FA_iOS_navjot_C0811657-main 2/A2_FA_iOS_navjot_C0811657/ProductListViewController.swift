@@ -6,7 +6,10 @@
 //
 
 import UIKit
-
+struct Provider {
+    var name: String?
+    var products = [ProdcutModel]()
+}
 
 class ProductListViewController: UIViewController {
     
@@ -16,6 +19,9 @@ class ProductListViewController: UIViewController {
     var products = [ProdcutModel]()
     var filtredProducts = [ProdcutModel]()
     
+    var isProvider = false
+    var providers = [Provider]()
+    var filtredProviders = [Provider]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +49,29 @@ class ProductListViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+ 
     
+    
+    @IBAction func segmentSwitched(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 1{
+            self.isProvider = true
+            self.title = "Providers"
+            let providers = self.products.map({$0.productProvider!}).uniqued()
+            for provider in providers{
+                let products = self.products.filter{$0.productProvider?.lowercased() == provider.lowercased()}
+                let pro = Provider(name: provider, products: products)
+                self.providers.append(pro)
+            }
+            self.filtredProviders = self.providers
+        }else{
+            self.title = "Products"
+            providers = [Provider]()
+            filtredProviders = [Provider]()
+            self.isProvider = false
+        }
+        
+        self.productListTableView.reloadData()
+    }
     
     
     
@@ -55,9 +83,15 @@ class ProductListViewController: UIViewController {
 extension ProductListViewController:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "NewProductViewController") as! NewProductViewController
-        vc.product = self.filtredProducts[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
+        if isProvider{
+            let vc = storyboard?.instantiateViewController(identifier: "ProviderProductListViewController") as! ProviderProductListViewController
+            vc.provider = self.filtredProviders[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let vc = storyboard?.instantiateViewController(identifier: "NewProductViewController") as! NewProductViewController
+            vc.product = self.filtredProducts[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
     }
     
@@ -66,14 +100,20 @@ extension ProductListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return  self.filtredProducts.count
+        return self.isProvider ? self.filtredProviders.count : self.filtredProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
-        cell.productView.isHidden = false
-        cell.providerView.isHidden = true
-        cell.product = self.filtredProducts[indexPath.row]
+        if isProvider{
+            cell.productView.isHidden = true
+            cell.providerView.isHidden = false
+            cell.provider = self.filtredProviders[indexPath.row]
+        }else{
+            cell.productView.isHidden = false
+            cell.providerView.isHidden = true
+            cell.product = self.filtredProducts[indexPath.row]
+        }
         
         return cell
     }
@@ -107,9 +147,14 @@ extension ProductListViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty{
             self.filtredProducts = self.products
+            self.filtredProviders = self.providers
         }else{
+            if isProvider{
+                self.filtredProviders = self.providers.filter{$0.name!.lowercased().contains(searchText.lowercased())}
+            }else{
             self.filtredProducts = self.products.filter{$0.productName!.lowercased().contains(searchText.lowercased()) ||  $0.productDescription!.lowercased().contains(searchText.lowercased())}
             
+            }
         }
         self.productListTableView.reloadData()
     }

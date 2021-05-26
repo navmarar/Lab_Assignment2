@@ -24,11 +24,15 @@ class ProductTableViewCell: UITableViewCell {
         didSet{
             self.productNameLabel.text = product?.productName ?? ""
             self.productProviderNameLabel.text = product?.productProvider ?? ""
-            
-            
         }
     }
     
+    var provider: Provider?{
+        didSet{
+            self.providerNamelLabel.text = provider?.name
+            self.productCount.text = "\(provider?.products.count ?? 0)"
+        }
+    }
    
     
     override func awakeFromNib() {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E249513265E7A3000F8F4D1 /* ProviderProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E249511265E7A3000F8F4D1 /* ProviderProductTableViewCell.swift */; };
+		5E249514265E7A3000F8F4D1 /* ProviderProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E249512265E7A3000F8F4D1 /* ProviderProductListViewController.swift */; };
 		5EC704F3265C1B220083F59F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC704F2265C1B220083F59F /* AppDelegate.swift */; };
 		5EC704F5265C1B220083F59F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC704F4265C1B220083F59F /* SceneDelegate.swift */; };
 		5EC704FA265C1B220083F59F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EC704F8265C1B220083F59F /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E249511265E7A3000F8F4D1 /* ProviderProductTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderProductTableViewCell.swift; sourceTree = "<group>"; };
+		5E249512265E7A3000F8F4D1 /* ProviderProductListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderProductListViewController.swift; sourceTree = "<group>"; };
 		5EC704EF265C1B220083F59F /* A2_FA_iOS_navjot_C0811657.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = A2_FA_iOS_navjot_C0811657.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC704F2265C1B220083F59F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EC704F4265C1B220083F59F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 			children = (
 				5EC704F2265C1B220083F59F /* AppDelegate.swift */,
 				5EC70512265C1C040083F59F /* NewProductViewController.swift */,
+				5E249512265E7A3000F8F4D1 /* ProviderProductListViewController.swift */,
+				5E249511265E7A3000F8F4D1 /* ProviderProductTableViewCell.swift */,
 				5EC70511265C1C040083F59F /* ProductListViewController.swift */,
 				5EC70510265C1C040083F59F /* ProductTableViewCell.swift */,
 				5EC704F4265C1B220083F59F /* SceneDelegate.swift */,
@@ -154,8 +160,10 @@
 			files = (
 				5EC7050E265C1BCC0083F59F /* ProdcutModel+CoreDataProperties.swift in Sources */,
 				5EC704FD265C1B220083F59F /* A2_FA_iOS_navjot_C0811657.xcdatamodeld in Sources */,
+				5E249513265E7A3000F8F4D1 /* ProviderProductTableViewCell.swift in Sources */,
 				5EC70515265C1C040083F59F /* NewProductViewController.swift in Sources */,
 				5EC70514265C1C040083F59F /* ProductListViewController.swift in Sources */,
+				5E249514265E7A3000F8F4D1 /* ProviderProductListViewController.swift in Sources */,
 				5EC704F3265C1B220083F59F /* AppDelegate.swift in Sources */,
 				5EC7050D265C1BCC0083F59F /* ProdcutModel+CoreDataClass.swift in Sources */,
 				5EC704F5265C1B220083F59F /* SceneDelegate.swift in Sources */,
